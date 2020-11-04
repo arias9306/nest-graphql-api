@@ -12,7 +12,7 @@ export class StudentService {
     private readonly studentRepository: Repository<Student>,
   ) {}
 
-  create(createStudentInput: CreateStudentInput): Promise<Student> {
+  async create(createStudentInput: CreateStudentInput): Promise<Student> {
     const { firstName, lastName } = createStudentInput;
 
     const student = this.studentRepository.create({
@@ -23,11 +23,15 @@ export class StudentService {
     return this.studentRepository.save(student);
   }
 
-  getAll(): Promise<Student[]> {
+ async getAll(): Promise<Student[]> {
     return this.studentRepository.find();
   }
 
-  getById(id: number): Promise<Student> {
+  async getById(id: number): Promise<Student> {
     return this.studentRepository.findOne({ id });
+  }
+
+  async getManyStudents(ids: number[]): Promise<Student[]> {
+    return this.studentRepository.findByIds(ids);
   }
 }

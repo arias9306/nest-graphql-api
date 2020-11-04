@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+
+import { Student } from '../student/student.entity';
 
 @Entity()
 export class Lesson {
@@ -10,4 +12,14 @@ export class Lesson {
   startDate: string;
   @Column()
   endDate: string;
+
+  @ManyToMany(
+    () => Student,
+    student => student.lessons,
+    {
+      cascade: true,
+    },
+  )
+  @JoinTable()
+  students: Student[];
 }
