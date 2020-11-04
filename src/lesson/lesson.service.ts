@@ -29,13 +29,13 @@ export class LessonService {
 
   async getLesson(id: string): Promise<Lesson> {
     return this.lessonRepository.findOne(id, {
-       relations: ['students']
+      relations: ['students'],
     });
   }
 
   async getLessons(): Promise<Lesson[]> {
     return this.lessonRepository.find({
-      relations: ['students']
+      relations: ['students'],
     });
   }
 

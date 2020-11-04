@@ -23,7 +23,7 @@ export class StudentService {
     return this.studentRepository.save(student);
   }
 
- async getAll(): Promise<Student[]> {
+  async getAll(): Promise<Student[]> {
     return this.studentRepository.find();
   }
 
